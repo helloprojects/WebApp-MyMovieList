@@ -1,0 +1,56 @@
+<% include ../partials/header %>
+
+<div class = "" style="margin-left:50px;margin-right:50px">
+    <div class="col s12">
+        <br /><br />
+        <!--<a href="/movie/add" class="btn btn-success btn-lg">Add a New Movie</a>-->
+    </div>
+</div>
+<br>
+
+<div class="" style="margin-left:50px;margin-right:50px">
+    <div class="col s12">
+        <% if (movies != null && movies.length > 0) { %>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width:8%;text-align:center">TMDB ID</th>
+                    <th style="width:15%;text-align:center">Title</th>
+                    <th style="width:10%;text-align:center">Genre</th>
+                    <th style="width:10%;text-align:center">Rating</th>
+                    <th style="width:10%;text-align:center">Release Date</th>
+                    <th style="width:8%;text-align:center">Cover Art</th>
+                    <th style="width:40%;text-align:center">Overview</th>
+                    <th solspan="2" style="width:30%;text-align:center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% movies.forEach(function(movie, index){ %>
+                    <tr>
+                        <td style="width:8%;text-align:center"><%= movie.TMDB_ID %></td>
+                        <td style="width:15%;text-align:center"><%= movie.title %></td>
+                        <td style="width:10%;text-align:center"><%= "UNIMPLEMENTED" %></td>
+                        <td style="width:10%;text-align:center"><%= movie.rating %></td>
+                        <td style="width:10%;text-align:center"><%= movie.year %></td>
+                        <td style = "width:8%;text-align:center">
+                            <img src="<%= images[index] %>"
+                            alt= "<%= movie.title %>" width = 125px; height = 175px;/>
+                        </td>
+                        <td style="width:40%"><%= overviews[index] %></td>
+
+                        <td solspan="2" style="width:30%;text-align:center">
+                            <br><br>
+                            <!--<a href="/movie/delete/<%= movie.movieID %>" class ="btn btn-danger">Delete</a>-->
+                        </td>
+                        
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <% } else{ %>
+            <p><strong>There are no records available.</strong></p>
+        <% } %>
+    </div>
+</div>
+
+<% include ../partials/footer %>
