@@ -1,37 +1,25 @@
 <% include ../partials/header %>
 
+  <div id="rightSide">  
+    <h2>Login</h2>
 
-<div class="" style="margin-left:50px;margin-right:50px">
-    <div class="col s12">
-        
-        <p>Log in to see your movies </p>
+    <form method="get" action="/register">
+      <div class="positionForm"><label>Username</label><input  type="text" id="user"/></div>
+      <div class="positionForm"><label>Password</label><input type="password1" id="password"/></div>
+      <input class="button_input" type="submit" value="login" />
+      <input class="button_input" type="submit" value="register" />
+    </form>
 
-        <form action="/account" method="post"class = "col s12">
-          <div class="form-group row">
-              <label for="username" class="col-2 col-form-label">Username</label>
-              <div class="col-10">
-                <input type="text" id="username" name="username">
-              </div>
-          </div>
-          <div class="form-group row">
-              <label for="password" class="col-2 col-form-label">Password</label>
-              <div class="col-10">
-                <input type="password" id="password" name="password">
-              </div>
-          </div>
-          <div class="form-group row">
-              <label for="" class="col-2 col-form-label" style="color:#ffffff">Log in</label>
-              <div class="col-10">
-                <input type="submit" class="btn btn-primary btn-lg">
-              </div>
-          </div>
-        </form>
-
-        <p>Don't have an account? <a href="/register"> Click here to register! </a> </p>
-
-        <p> [DEBUG] <a href="/movieList"> Click here to see the entire movie list! </a> </p>
+    <h2>Website Description</h2>
+    <div class="right_section">
+      <p> 
+        On our website we feature -- of our newest movie previews. If you are looking for certain types of movies check out our --- movie genres. Use our movie search bocs in the top right hand of corner to find movies in our data base.
+      </p>                                                 
     </div>
-</div>
+  </div>
 
+
+  <% include ../partials/latestMovies %>
+  <% include ../partials/popularMovies %>
 
 <% include ../partials/footer %>

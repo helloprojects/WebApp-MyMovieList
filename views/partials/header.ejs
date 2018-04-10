@@ -2,10 +2,27 @@
 	<head>
 		<title><%= siteTitle %> - <%= pageTitle %></title>
 		<% include ../partials/head %>
-		<style>
-			*{border-radius: 0px !important}
-		</style>
+		<script src="/scripts/utils.js">window.onload = invokeSlider();</script>
 	</head>
 	<body>
-		<% include ../partials/navbar %>
-		<br>
+
+		<div id="main_wrapper">
+			<div id="top_header">
+    			<div id="title">
+					<img class="logo" src="/images/MyMovieListLogo.png" alt="logo" /> <span id = "sitetitle"> to Watch</span><span id ="sitetitle2"> and Enjoy</span>
+        		</div>
+
+        		<div id="search">
+        			<form method="get" action="#">
+                		<label>Search:</label><input name="keyword" type="text" id="keyword"/>
+                		<input class="button_input" type="submit" name="Search" value="Search" />
+            		</form>
+        		</div>
+        	</div>
+
+        	<% include ../partials/navbar %>
+        	<div id="content">
+  				<div>
+    				<img class="slides" src="/images/slide.jpg" alt="slide1" />
+    				<img class="slides" src="/images/slide2.jpg" alt="slide2" />
+  				</div>
