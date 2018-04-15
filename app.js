@@ -14,10 +14,10 @@ var Promise = require('promise');
 
 // Route References:
 var index = require('./routes/index');
-var movieList = require('./routes/movieList');	//Debug
 var register = require('./routes/register');
 var movieSearch = require('./routes/movieSearch');
-
+var contact = require('./routes/contact');
+var selectedMovie = require('./routes/selectedMovie');
 
 
 var app = express();
@@ -42,16 +42,16 @@ app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 app.use('/stylesheets', express.static(__dirname + '/stylesheets'));
-app.use('/scripts', express.static(__dirname + '/scripts'));
 app.use('/images', express.static(__dirname + '/images'));
 app.use('/partials', express.static(__dirname + '/views/partials'));
 
 
 // Assign routes to url
 app.use('/', index);
-app.use('/movieList', movieList);	//Debug
 app.use('/register', register);
 app.use('/movieSearch', movieSearch);
+app.use('/contact', contact);
+app.use('/selectedMovie', selectedMovie);
 
 
 // Handle 404 Error and forward to Error Handler

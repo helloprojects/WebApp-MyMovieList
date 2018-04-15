@@ -4,7 +4,7 @@
 <div>
   <div>
     <h1 class= "styleHeader">Create Account</h1>
-    <form action="/submit" method="POST">
+    <form action="/register/submit" method="POST">
       <table>
         <tr>
           <td><label for="username">Username<span class="required">*</span></label></td>
@@ -39,16 +39,16 @@
         <tr>
           <td></td>
           <td>
-            <input class="button_input" type="submit" value="SEND" id="btnSubmit" formaction="accountCreated.html">
+            <input class="button_input" type="submit" id="btnSubmit">
             <input class="button_input" type="reset" value="CLEAR" id="btnReset">
           </td>
           <td>&nbsp; &nbsp;</td>
         </tr>
       </table>
     </form>
+
+    <p><strong><%= message %></strong></p>
   </div>
 </div>
 
-
-<% include ../partials/popularMovies %>
 <% include ../partials/footer %>

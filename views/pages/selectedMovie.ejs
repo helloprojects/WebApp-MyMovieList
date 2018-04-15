@@ -1,0 +1,54 @@
+<% include ../partials/header %>
+
+<div>
+	<div>
+		<h1 class= "styleHeader"><%= data.title %></h1>
+
+		<img src="<%= 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/'+ data.poster_path %>"
+			alt= "<%= data.title %>" width = 125px; height = 175px;/>
+		<p>TMDB ID: <%= data.id %> </p>
+		<p>Rating: <%= data.vote_average %> </p>
+		<p>Genre(s): 
+			<% data.genres.forEach(function(genre, index){ %>
+				<%= genre.name %>
+			<% }); %> 
+		</p>
+		<p>Release Date: <%= data.release_date %> </p>
+		<p>Production Companies: 
+			<% data.production_companies.forEach(function(company, index){ %>
+				<%= company.name %>
+			<% }); %> 
+		<p>Production Countries: 
+			<% data.production_countries.forEach(function(country, index){ %>
+				<%= country.name %>
+			<% }); %> 
+		<p>Runtime: <%= data.runtime %> Minutes </p>
+		<p>Overview: <%= data.overview %> </p>
+
+		<form action="/selectedMovie/:<%= data.id %>" method="POST">
+		  <table>
+		    <tr>
+		    	<select name="listType">
+		    		<option name="" value="0">---</option>
+		      		<option name="plan" value="1">Plan To Watch</option>
+		      		<option name="watched" value="2">Watched</option>
+		      	</select>
+		      	<input class="button_input" type="submit" value="Update">
+		    </tr>
+		  </table>
+		</form>
+		
+
+
+		<br />
+		<br />
+		<br />
+		<hr>
+		<h1 class= "styleHeader">Reviews:</h1>
+		INSERT MOVIE REVIEWS HERE
+		<br />
+		<br />
+	</div>
+</div>
+
+<% include ../partials/footer %>

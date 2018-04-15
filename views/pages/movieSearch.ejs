@@ -5,40 +5,50 @@
 		<h1 class= "styleHeader">Movie List:</h1>
 		<table>
 			<tr>
-				<% if (searchType == 'genre'){ %>
-					<td><label>Find By Genre:</label></td>
-					<td>
-						<select>
-							<option value="">----</option>
-							<option value="">Action</option>
-							<option value="">Adventure </option>
-							<option value="">Horror</option>
-							<option value="">Comedy</option>
-							<option value="">Drama</option>
-						</select>
-					</td>
-				<% } else if (searchType == 'rating'){ %>
-					<td><label>Find By Rating:</label></td>
-					<td>
-						<select>
-							<option value="">----</option>
-							<option value="">Highest First</option>
-							<option value="">Lowest First</option>
-						</select>
-					</td>
+				<% if (query == null){ %>
+					<% if (searchType == 'genre'){ %>
+						<td><label>Find By Genre:</label></td>
+						<td>
+							<form action="/movieSearch/genre" method="POST">
+								<select name="genreDropdown">
+									<option value="nothing">----</option>
+									<% availableGenres.forEach(function(genre, index){ %>
+										<option value="<%= '' + genre.id + '-' + genre.name %>"> <%= genre.name %> </option>
+									<% }); %>
+								</select>
+								<input class="button_input" type="submit" value="Search">
+							</form>
+						</td>
+					<% } else if (searchType == 'rating'){ %>
+						<td><label>Find By Rating:</label></td>
+						<td>
+							<select>
+								<option value="">----</option>
+								<option value="">Highest First</option>
+								<option value="">Lowest First</option>
+							</select>
+						</td>
+					<% } else if (searchType == 'year') { %>
+						<td><label>Find By Year:</label></td>
+						<td>
+							<form action="/movieSearch/year" method="POST">
+								<select name="yearDropdown">
+									<option value="">----</option>
+									<% for(var i = 2018; i >= 1900; i--){ %>
+										<option value="<%= i %>"> <%= i %> </option>
+									<% } %>
+								</select>
+								<input class="button_input" type="submit" value="Search">
+							</form>
+						</td>
+					<% } else{ }%>
+
 				<% } else{ %>
-					<td><label>Find By Year:</label></td>
-					<td>
-						<select>
-							<option value="">----</option>
-							<option value="">2018</option>
-							<option value="">2017</option>
-							<option value="">2016</option>
-						</select>
-					</td>
+					<tr>
+						<td><label> Searched For: <%= query %> </label></td>
+						<td><label> Found <%= totalResults %> results.</label> </td>
+					</tr>
 				<% } %>
-				<td> <label>Find by Movie Name:</label></td>
-				<td><input type="text" id="username" name="username"></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -47,28 +57,36 @@
 				<td>&nbsp;</td>
 			</tr>
 		</table>
-		<div class="grid-container">
-			<div class="grid-item">1</div>
-			<div class="grid-item">2</div>
-			<div class="grid-item">3</div>  
-			<div class="grid-item">4</div>
-			<div class="grid-item">5</div>
-			<div class="grid-item">6</div>  
-			<div class="grid-item">7</div>
-			<div class="grid-item">8</div>
-			<div class="grid-item">9</div>  
-		</div>
-		<div class="pagination">
-			<a href="#">&laquo;</a>
-			<a href="#">1</a>
-			<a href="#">2</a>
-			<a href="#">3</a>
-			<a href="#">4</a>
-			<a href="#">5</a>
-			<a href="#">&raquo;</a>
-		</div>
+		<% if(results != null){ %>
+			<div class="grid-container">
+				<% results.forEach(function(movie, index){ %>
+					<div class="grid-item">
+						<figure>
+						  	<a href = "/selectedMovie/:<%= movie.id %>">
+						  		<img src="<%= 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/'+ movie.poster_path %>"
+                            		alt= "<%= movie.title %>" width = 125px; height = 175px;/>
+                          	</a>
+						  	<figcaption>
+						  		<label>
+						  			<a href = "/selectedMovie/:<%= movie.id %>"><%= movie.title %></a>
+						  		</label>
+							</figcaption>
+						</figure> 
+					</div>
+				<% }); %> 
+			</div>
+			<div class="pagination">
+				<a href="#">&laquo;</a>
+				<a href="#">1</a>
+				<a href="#">2</a>
+				<a href="#">3</a>
+				<a href="#">4</a>
+				<a href="#">5</a>
+				<a href="#">&raquo;</a>
+			</div>
+		<% } else{ %>
+			<p> No search results found. </p>
+		<% } %>
 	</div>
 </div>
-
-<% include ../partials/popularMovies %>
 <% include ../partials/footer %>

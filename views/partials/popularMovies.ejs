@@ -1,25 +1,18 @@
+
 <div id="popular_section">
   <h1 class= "styleHeader">Popular movies </h1>
-  <div class="popular_box">
-    <img src="images/sample.jpg" alt="image" />
-    <h3>Title 1</h3> 
-    <p>Maecenas vulputate, arcu id fermentum eleifend, tortor enim tincidunt mauris, fringilla tincidunt purus urna vel risus. <a href="#">more...</a></p>
-  </div>
-  <div class="popular_box">
-    <img src="images/sample.jpg" alt="image" />
-    <h3>Title 2</h3> 
-    <p> Fusce vulputate tellus ac felis. Praesent mauris. Quisque gravida faucibus ligula. Aliquam magna. Phasellus id felis. <a href="#">more...</a></p>
-  </div>
-  <div class="popular_box">
-    <img src="images/sample.jpg" alt="image" />
-    <h3>Title 3</h3> 
-    <p> Fusce vulputate tellus ac felis. Praesent mauris. Quisque gravida faucibus ligula. Aliquam magna. Phasellus id felis. <a href="#">more...</a></p>
-  </div>
-  <div class="popular_box">
-    <img src="images/sample.jpg" alt="image" />
-    <h3>Title 3</h3> 
-    <p> Fusce vulputate tellus ac felis. Praesent mauris. Quisque gravida faucibus ligula. Aliquam magna. Phasellus id felis. <a href="#">more...</a></p>
-  </div>
+
+  <% for(var i = 0; i < 3; i++){ %>
+    <div class="popular_box">
+      <img src="<%= 'https://image.tmdb.org/t/p/w185_and_h278_bestv2/'+ popularMovies[i].poster_path %>"
+        alt= "<%= popularMovies[i].title %>" width = 125px; height = 175px;/>
+      <h3><%= popularMovies[i].title %></h3> 
+      <p><%= popularMovies[i].overview.substring(0, 175).trim() + "   " %><a href="/selectedMovie/:<%= popularMovies[i].id %>">more...</a></p>
+    </div>
+  <% } %>
+
+  
+  
   <div class="moreInfo2">
     <a href="#">View All</a>
   </div>

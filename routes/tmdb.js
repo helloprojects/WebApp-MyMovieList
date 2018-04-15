@@ -21,6 +21,7 @@ function fetchMovieFromID(movieID){
 }
 
 
+//Will be used for displaying a user's movie list
 module.exports.fetchMoviesFromJSON = function(movies){
 	var images = [];
 	var overviews = [];

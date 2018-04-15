@@ -2,7 +2,26 @@
 	<head>
 		<title><%= siteTitle %> - <%= pageTitle %></title>
 		<% include ../partials/head %>
-		<script src="/scripts/utils.js">window.onload = invokeSlider();</script>
+		<script>
+            window.onload = function() {
+                var index = 0;
+                changeSlide();
+
+                function changeSlide() {
+                    var i;
+                    var x = document.getElementsByClassName("slides");
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";  
+                    }
+                    index++;
+                    if (index > x.length) {
+                        index = 1            
+                    }    
+                    x[index-1].style.display = "block";  
+                    setTimeout(changeSlide, 2000); // Change image every 2 seconds
+                }
+            }
+        </script>
 	</head>
 	<body>
 
@@ -12,12 +31,14 @@
 					<img class="logo" src="/images/MyMovieListLogo.png" alt="logo" /> <span id = "sitetitle"> to Watch</span><span id ="sitetitle2"> and Enjoy</span>
         		</div>
 
+
         		<div id="search">
-        			<form method="get" action="#">
-                		<label>Search:</label><input name="keyword" type="text" id="keyword"/>
+        			<form method="post" action="/movieSearch/">
+                		<label>Search:</label><input name="keyword" type="search" id="keyword"/>
                 		<input class="button_input" type="submit" name="Search" value="Search" />
             		</form>
         		</div>
+
         	</div>
 
         	<% include ../partials/navbar %>
